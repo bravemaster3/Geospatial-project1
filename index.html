@@ -69,15 +69,15 @@
 						</ul>
 					-->
 					<div class="custom-control custom-radio">
-					  <input type="radio" id="osmRadio" name="customRadio" class="custom-control-input" checked>
+					  <input type="radio" id="osmRadio" name="customRadio" class="custom-control-input" value="1" onclick = "radioClick(this);" checked>
 					  <label class="custom-control-label" for="osmRadio">OSM</label>
 					</div>
 					<div class="custom-control custom-radio">
-					  <input type="radio" id="OpenTopoMapRadio" name="customRadio" class="custom-control-input">
-					  <label class="custom-control-label" for="OpenTopoMapRadio">Terrain</label>
+					  <input type="radio" id="openTopoMapRadio" name="customRadio" class="custom-control-input" value="2" onclick = "radioClick(this);">
+					  <label class="custom-control-label" for="openTopoMapRadio">Open Topo Map</label>
 					</div>
 					<div class="custom-control custom-radio">
-					  <input type="radio" id="googleTerrainRadio" name="customRadio" class="custom-control-input">
+					  <input type="radio" id="googleTerrainRadio" name="customRadio" class="custom-control-input" value="3" onclick = "radioClick(this);">
 					  <label class="custom-control-label" for="googleTerrainRadio">Google Terrain</label>
 					</div>
 

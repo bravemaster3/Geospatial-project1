@@ -14,7 +14,7 @@
 	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 	  minZoom: 5}).addTo(map);
 
-	var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	var openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 		minZoom: 5,
 		attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
 	});
@@ -125,7 +125,7 @@
 
 	//programming the actions of the checkboxes
 	var osmRadio = document.getElementById("osmRadio")
-	var OpenTopoMapRadio = document.getElementById("OpenTopoMapRadio")
+	var openTopoMapRadio = document.getElementById("openTopoMapRadio")
 	var googleTerrainRadio = document.getElementById("googleTerrainRadio")
 
 	var catchmentsCheck = document.getElementById("catchmentsCheck")
@@ -137,25 +137,19 @@
 
 	var baseLayers = {
 		"osm": osm,
-		"Open Topo Map": OpenTopoMap,
+		"Open Topo Map": openTopoMap,
 		"Google terrain": googleTerrain
 	}
 
-	osmRadio.onclick = function(){
-		if($(this).is(':checked'))	baseLayers["osm"].addTo(map)
-		else this._map.removeLayer(osm)
-	}
-
-
-	OpenTopoMapRadio.onclick = function(){
-		if($(this).is(':checked'))	baseLayers["Open Topo Map"].addTo(map)
-		else map.removeLayer(OpenTopoMap);
-	}
-
-	googleTerrainRadio.onclick = function(){
-		if($(this).is(':checked'))	baseLayers["Google terrain"].addTo(map)
-
-		else map.removeLayer(googleTerrain)
+//defining the function radioClick which is used for onclick event in the html file
+	function radioClick(myRadio) {
+		var selectedRadio = myRadio.id;
+		if(selectedRadio=="osmRadio") baseLayers["osm"].addTo(map)
+			else map.removeLayer(baseLayers["osm"])
+		if(selectedRadio=="openTopoMapRadio") baseLayers["Open Topo Map"].addTo(map)
+			else map.removeLayer(baseLayers["Open Topo Map"])
+		if(selectedRadio=="googleTerrainRadio") baseLayers["Google terrain"].addTo(map)
+			else map.removeLayer(baseLayers["Google terrain"])
 	}
 
 
@@ -191,3 +185,4 @@ map.on('mousemove', function(e){
     //console.log(e)
     $("#coordinates").html(`Lat:${e.latlng.lat.toFixed(3)}, Long:${e.latlng.lng.toFixed(3)}`)
 })
+
