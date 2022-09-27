@@ -24,11 +24,16 @@
     subdomains:['mt0','mt1','mt2','mt3']
     });
 
+    var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
 
 	//Creating styles for the geojson files
 
 	var catchmentsStyle = {
-	    weight:1,
+	    weight:2,
 	    fillColor:"blue",
 	    color: "blue",
 	    fillOpacity:0.05
@@ -138,7 +143,8 @@
 	var baseLayers = {
 		"osm": osm,
 		"Open Topo Map": openTopoMap,
-		"Google terrain": googleTerrain
+		"Google terrain": googleTerrain,
+		"Google satellite": googleSat
 	}
 
 //defining the function radioClick which is used for onclick event in the html file
@@ -150,6 +156,8 @@
 			else map.removeLayer(baseLayers["Open Topo Map"])
 		if(selectedRadio=="googleTerrainRadio") baseLayers["Google terrain"].addTo(map)
 			else map.removeLayer(baseLayers["Google terrain"])
+		if(selectedRadio=="googleSatRadio") baseLayers["Google satellite"].addTo(map)
+			else map.removeLayer(baseLayers["Google satellite"])
 	}
 
 
